@@ -1,0 +1,52 @@
+package com.practice.entities;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
+public class Movies {
+	public Movies(int mv_id, String mv_name, int rating) {
+		super();
+		this.mv_id = mv_id;
+		this.mv_name = mv_name;
+		this.rating = rating;
+	
+	}
+	@Id
+private int mv_id;
+
+private String mv_name;
+private int rating;
+@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+private List<user> usr;
+public int getMv_id() {
+	return mv_id;
+}
+public void setMv_id(int mv_id) {
+	this.mv_id = mv_id;
+}
+public String getMv_name() {
+	return mv_name;
+}
+public void setMv_name(String mv_name) {
+	this.mv_name = mv_name;
+}
+public int getRating() {
+	return rating;
+}
+public void setRating(int rating) {
+	this.rating = rating;
+}
+
+
+public Movies() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+}

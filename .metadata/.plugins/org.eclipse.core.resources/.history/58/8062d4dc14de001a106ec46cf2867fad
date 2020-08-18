@@ -1,0 +1,32 @@
+package com.practice.userservice.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.practice.entities.Movies;
+import com.practice.entities.user;
+import com.practice.userservice.repository.MoviesRepo;
+import com.practice.userservice.repository.Userrepo;
+@Service
+public class UserService{
+	
+@Autowired
+private Userrepo repo;
+public Boolean  saveuser(user request) {
+	Boolean response=false;
+
+	user usr=new user();
+	usr.setId(request.getId());
+	usr.setName(request.getName());
+	usr.setMvies(request.getMvies());
+	user usrs=repo.save(usr);
+	if(usrs !=null) {
+		response=true;
+	}
+	if(usrs==null) {
+		response=false;
+	}
+	return response;
+	
+}
+}

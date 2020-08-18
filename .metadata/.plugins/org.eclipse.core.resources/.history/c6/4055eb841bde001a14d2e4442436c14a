@@ -1,0 +1,35 @@
+package com.practice.userservice.service1;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.practice.entities.user;
+import com.practice.userservice.repository.Userrepo;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class UserService{
+	
+@Autowired
+private Userrepo repo;
+public Boolean  saveuser(user request) {
+	Boolean response=false;
+
+	user usr=new user();
+	usr.setId(request.getId());
+	usr.setName(request.getName());
+	usr.setMvies(request.getMvies());
+	user usrs=repo.save(usr);
+	if(usrs !=null) {
+		response=true;
+	}
+	else {
+		response=false;
+	}
+	log.info("saved");
+	return response;
+	
+}
+}
