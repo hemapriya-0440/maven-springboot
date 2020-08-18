@@ -1,12 +1,13 @@
 package com.practice.userservice.service1;
 
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.practice.entities.user;
 import com.practice.userservice.repository.Userrepo;
-
-import lombok.extern.slf4j.Slf4j;
 
 
 @Service
@@ -29,6 +30,15 @@ public Boolean  saveuser(user request) {
 		response=false;
 	}
 	return response;
+	
+}
+public List<user> getbyid(int id) {
+	List<user> list=repo.getById(id);
+	list.forEach(usr -> {
+		user usrs=new user();
+		BeanUtils.copyProperties(usr,usrs);
+	});
+	return list;
 	
 }
 }
